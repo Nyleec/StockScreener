@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        
+        <script src='/lib.js' type="module"></script>
+
+
+    </head>
+    <body>
+        <div id="chart" style="max-width:100vw; height:50vw"></div>
+                
+        <script type="text/javascript">
+
+//need a server to host JS and HTML code to get around CORS restrictions
+
+    //gets stock data from polygon
+
+    //initializes and draws chart
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+            newData = [['timestamp','value']];   
+
+            //pushes stock timestamp and value to newData array for use in chart
+               /* {pretest: 10, posttest: 60},
+                {pretest: 17, posttest: 65},
+                {pretest: 50, posttest: 95},
+                {pretest: 40, posttest: 100},
+                {pretest: 65, posttest: 100},
+                {pretest: 42, posttest: 88},
+                {pretest: 80, posttest: 70},
+                {pretest: 75, posttest: 95},
+                {pretest: 68, posttest: 81},
+                {pretest: 20, posttest: 65},
+                {pretest: 25, posttest: 70},
+                {pretest: 40, posttest: 90},
+                {pretest: 38, posttest: 88},
+                {pretest: 45, posttest: 66},
+                {pretest: 60, posttest: 90},
+                {pretest: 65, posttest: 97},
+                {pretest: 40, posttest: 99},
+                ];
+            for(i=0; i<info.length; i++){
+            newData.push([info[i].timestamp, info[i].value]);
+            }*/
+
+            //Draws table
+                var data = google.visualization.arrayToDataTable(newData);
+                var options = {
+                title: 'Ticket',
+                vAxis: {title: 'Y', minValue: 0, maxValue: 100},
+                hAxis: {title: 'X', minValue: 0, maxValue: 100},
+                pointSize: 20,
+                pointShape: 'circle',
+                legend: 'none'
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('chart'));
+                chart.draw(data, options);
+            }
+            
+            window.onresize = function() {
+            drawChart();
+            }
+            </script>
+    </body>
+</html>
