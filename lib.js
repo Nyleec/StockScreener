@@ -1,9 +1,9 @@
 //import { restClient } from "@polygon.io/client-js";
 //import { referenceClient } from "@polygon.io/client-js";
 const polygon = require('@polygon.io/client-js');
+const { __esModule } = require('@polygon.io/client-js/lib/rest/stocks/aggregates');
 
-
-var num = 19;
+ var num = 19;
 var dates={};
 for(var i =0;i<2;i++){
     dates[i]=num;
@@ -26,7 +26,8 @@ async function sequentialCall() {
   }
 }
 
- async function testAggs(param){
+
+  async function testAggs(param){
     const response = await rest.stocks.aggregates(param,10,"minute","2022-12-19","2022-12-20");
     let test = {};
     //stores response as accessible variables
@@ -38,7 +39,7 @@ async function sequentialCall() {
     }
 }
 
-testAggs("DKNG");
-        
-    
+exports.testAggs=testAggs;
+
+
 

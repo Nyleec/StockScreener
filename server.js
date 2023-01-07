@@ -1,6 +1,7 @@
 
 const express = require('express');
 const lib = require('./lib.js');
+const func = lib.testAggs("DKNG");
 
 const app = express()
 const port = 3000;
@@ -12,10 +13,10 @@ app.use(function(req, res, next) {
 });
 
 //console.log(app.get.toString())
-app.get('/songs', (req, res) => {
+app.get('/chart', (req, res) => {
     console.log(res)
     res.send('Bunch of songs!')
-    console.log(lib.testAggs("DKNG"));
+   console.log(lib.testAggs());
   })
   app.get('', (req, res) => {
     console.log(res)
@@ -28,9 +29,5 @@ app.get('/songs', (req, res) => {
   
   app.get('/test', function(req, res, next) {
     // Handle the get for this route
-   // res.sendFile('/index.html', {root: __dirname });
-    //res.sendFile('/lib.js', {root: __dirname })
+   res.sendFile('/index.html', {root: __dirname });
   })
- /*app.get('/test', function(req, res) {
-    res.sendFile('/index.html', {root: __dirname })
-});*/

@@ -6,10 +6,10 @@
     <body>
         <div id="chart" style="max-width:100vw; height:50vw"></div>
                 
-        <script>
-
-//need a server to host JS and HTML code to get around CORS restrictions
-
+        <script type="module">
+import { testAggs } from "./lib.js";
+//const lib = require('./lib.js');
+console.log(lib.testAggs("DKNG"));
     //gets stock data from polygon
 
     //initializes and draws chart
@@ -18,6 +18,9 @@
 
             function drawChart() {
             newData = [['timestamp','value']];   
+            for(i=0; i<info.length; i++){
+            newData.push([info[i].timestamp, info[i].value]);
+            }
 
             //pushes stock timestamp and value to newData array for use in chart
                /* {pretest: 10, posttest: 60},
@@ -38,9 +41,7 @@
                 {pretest: 65, posttest: 97},
                 {pretest: 40, posttest: 99},
                 ];
-            for(i=0; i<info.length; i++){
-            newData.push([info[i].timestamp, info[i].value]);
-            }*/
+            */
 
             //Draws table
                 var data = google.visualization.arrayToDataTable(newData);
