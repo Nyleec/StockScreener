@@ -1,11 +1,7 @@
 
-const express = require('express')
+const express = require('express');
+const lib = require('./lib.js');
 
-/* Trying to import lib.js as a module
-import ('./lib.js').then(lib=>{
-  lib.testAggs("DKNG");
-});
-*/
 const app = express()
 const port = 3000;
 //enable CORS
@@ -19,6 +15,7 @@ app.use(function(req, res, next) {
 app.get('/songs', (req, res) => {
     console.log(res)
     res.send('Bunch of songs!')
+    console.log(lib.testAggs("DKNG"));
   })
   app.get('', (req, res) => {
     console.log(res)
@@ -31,8 +28,9 @@ app.get('/songs', (req, res) => {
   
   app.get('/test', function(req, res, next) {
     // Handle the get for this route
-    res.sendFile('/index.html', {root: __dirname })
-  });
+   // res.sendFile('/index.html', {root: __dirname });
+    //res.sendFile('/lib.js', {root: __dirname })
+  })
  /*app.get('/test', function(req, res) {
     res.sendFile('/index.html', {root: __dirname })
 });*/
