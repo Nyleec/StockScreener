@@ -2,6 +2,7 @@
 //import { referenceClient } from "@polygon.io/client-js";
 const polygon = require('@polygon.io/client-js');
 const { __esModule } = require('@polygon.io/client-js/lib/rest/stocks/aggregates');
+const fs = require('fs');
 
  var num = 19;
 var dates={};
@@ -26,20 +27,26 @@ async function sequentialCall() {
   }
 }
 
-
   async function testAggs(param){
     const response = await rest.stocks.aggregates(param,10,"minute","2022-12-19","2022-12-20");
     let test = {};
     //stores response as accessible variables
     test = response.results;
-    let open = test[0].o;
-
-    for (let i =0; i<test.length;i++){
-        console.log(test[i].o);
-    }
+    fs.writeFile('out.txt', JSON.stringify(test), (err) => {
+      if (err) throw err;
+  })
+    //console.log(test);
 }
 
-exports.testAggs=testAggs;
+function parseDate(){
+  fs.readFile('out.txt', 'utf8', function(err, data) {
+ 
+    console.log("The data from the file is: " + data)
+  })
+}
+
+
+parseDate();
 
 
 
